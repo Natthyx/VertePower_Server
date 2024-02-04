@@ -24,13 +24,13 @@ let isSMSSentHigh = false;
 app.post('/soil-moisture', (req, res) => {
   const moisture = req.body.moisture;
 
-  if (moisture < 10 && !isSMSSentLow) {
-    sendSMS('Critical alert! Soil moisture is under 10%. Turn on the pump!');
+  if (moisture < 60 && !isSMSSentLow) {
+    sendSMS('Critical alert! Soil moisture is under 60%. Turn on the pump!');
     isSMSSentLow = true;
     isSMSSentHigh = false;
 
-  } else if (moisture > 23 && !isSMSSentHigh) {
-    sendSMS('Soil moisture is above 60%. Turn off the pump.');
+  } else if (moisture > 80 && !isSMSSentHigh) {
+    sendSMS('Soil moisture is above 80%. Turn off the pump.');
     isSMSSentHigh = true;
     isSMSSentLow = false;
   }
